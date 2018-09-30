@@ -2,21 +2,20 @@
 import os, sys
 from wallaby import *
 
-#Test wait_for_button function
-# this is a new comment
+#Grabs can successfully
 
 lMotor = 1
 rMotor = 0
 armServo = 0
 clawServo = 1
 clawOpen = 1850
-clawClose = 1135
+clawClose = 1200
 armDown = 1300
 armUp = 0
 
 def freezeBoth():
     freeze(lMotor)
-    msleep(55)
+    msleep(55) #msleep is to balance difference between stop times of motors
     freeze(rMotor)
     msleep(225)
 
@@ -34,6 +33,7 @@ def wait_for_button():
 
 def main():
     print "Let's Get Going"
+    enable_servos()
     drive(95, 100, 1000)
     drive(-95, -100, 1000)
     for x in range(0, 4):
@@ -43,7 +43,6 @@ def main():
     freezeBoth()
     msleep(300)
     wait_for_button()
-    enable_servos()
     set_servo_position(armServo, armDown)
     msleep(50)
     set_servo_position(clawServo, clawOpen)
