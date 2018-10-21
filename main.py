@@ -2,15 +2,7 @@
 import os, sys
 from wallaby import *
 
-#Grabs can successfully
-
-# Great coding overall. Well done.
-# Could use a few comments here and there, but you've stuck with the
-# naming conventions and have used constants where appropriate.
-# Excellent work for being newer to the coding side of things.
-# Next up will be making separate files for constants and utility/action functions
-# and importing them using the "import" statement. I'll walk you all through that
-# -LMB
+# line follows till detecting can CHANGE VALES IN CAN GRAB FOR CAMERA MOUNT
 
 lMotor = 1
 rMotor = 0
@@ -21,17 +13,20 @@ clawClose = 1300
 armDown = 1300
 armUp = 0
 topHat = 1
+et = 0
 
 def freezeBoth():
     freeze(lMotor)
-    msleep(55) #msleep is to balance difference between stop times of motors
+    msleep(55)
+    # msleep is to balance difference between stop times of motors
     freeze(rMotor)
-    msleep(225)
+    msleep(1000)
 
 def drive(lPer, rPer, dTime):
     motor(lMotor, lPer)
     motor(rMotor, rPer)
     msleep(dTime)
+    ao()
 
 def wait_for_button():
     print "Waiting for Button Press"
@@ -45,8 +40,6 @@ def canGrab():
     msleep(50)
     set_servo_position(clawServo, clawOpen)
     msleep(50)
-    drive(90, 100, 3000)
-    freezeBoth()
     set_servo_position(clawServo, clawClose)
     msleep(100)
     set_servo_position(armServo, armUp)
@@ -58,30 +51,28 @@ def main():
 
     drive(95, 100, 1000)
     drive(-95, -100, 1000)
-    for x in range(0, 4):
-        print(x)
-        drive(90, 100, 2000)
-        drive(100, 0, 1175)
-    freezeBoth()
-    msleep(300)
+    #for x in range(0, 4):
+    #    print(x)
+    #    drive(90, 100, 2000)
+    #    drive(100, 0, 1175)
+    # drives a square
 
     wait_for_button()
+
+    set_servo_position(armServo, armDown)
+    msleep(50)
+    set_servo_position(clawServo, clawOpen)
+    msleep(50)
+    # sets arm down and claw open
+
+    while analog(et) < 2200: # checks ET sensor for distance from can
+        if analog(topHat) > 2000: # Reads Tophat sensor, >2000 is black
+            drive(90, 0, 10)
+        else:
+            drive(0, 90, 10)
 
     canGrab()
 
-    wait_for_button()
-
-    startTime = seconds()
-
-	# What does this block of code do? Comments would be helpful here.
-	# If this code was in a function that was named well enough, I might not even need a comment
-	# to understand what was going on -LMB
-    while (seconds() - startTime) < 5:
-        if analog(topHat) > 2000:
-            drive(100, 20, 10)
-        else:
-            drive(20, 100, 10)
-    freezeBoth()
 
 if __name__ == "__main__":
     sys.stdout = os.fdopen(sys.stdout.fileno(), "w", 0)
