@@ -4,6 +4,14 @@ from wallaby import *
 
 #Grabs can successfully
 
+# Great coding overall. Well done.
+# Could use a few comments here and there, but you've stuck with the
+# naming conventions and have used constants where appropriate.
+# Excellent work for being newer to the coding side of things.
+# Next up will be making separate files for constants and utility/action functions
+# and importing them using the "import" statement. I'll walk you all through that
+# -LMB
+
 lMotor = 1
 rMotor = 0
 armServo = 0
@@ -65,6 +73,9 @@ def main():
 
     startTime = seconds()
 
+	# What does this block of code do? Comments would be helpful here.
+	# If this code was in a function that was named well enough, I might not even need a comment
+	# to understand what was going on -LMB
     while (seconds() - startTime) < 5:
         if analog(topHat) > 2000:
             drive(100, 20, 10)
