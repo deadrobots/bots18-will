@@ -15,7 +15,16 @@ armUp = 0
 topHat = 1
 et = 0
 
-def freezeBoth():
+# Again, great work Will. It's about time to start separating code out to separate files
+# (so one file doesn't get too cumbersome)
+# I would suggest the following format:
+# constants.py (holds your constants!)
+# actions.py  (contains collections of motor and servo commands to perform an action. EX: grabCan() )
+# servo.py (just holds servo related functions. Not motor commands, generally)
+# motors.py (just holds your motor commands. drive(), driveTimed(), driveUntilBlackLine(), stuff like that.)
+# main.py (where everything starts!)
+
+def freezeBoth(): # Careful when using this function in a loop, as we saw. That last msleep() causes some confusion. -LMB
     freeze(lMotor)
     msleep(55)
     # msleep is to balance difference between stop times of motors
@@ -37,7 +46,7 @@ def wait_for_button():
 
 def canGrab():
     set_servo_position(armServo, armDown)
-    msleep(50)
+    msleep(50) # Careful. 50 ms is not nearly enough time for the servo to fully move to its next position, BTW. -LMB
     set_servo_position(clawServo, clawOpen)
     msleep(50)
     set_servo_position(clawServo, clawClose)
