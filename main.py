@@ -3,7 +3,7 @@ import os, sys
 from wallaby import *
 import constants as c
 import actions as a
-# line follows till detecting can CHANGE VALUES IN CAN GRAB FOR CAMERA MOUNT
+# all functions in use work, next time work on using the camera
 
 
 # Again, great work Will. It's about time to start separating code out to separate files
