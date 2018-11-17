@@ -71,7 +71,7 @@ def randomBumpNavigate():
         else:
             output = random.randint(0,1)
 
-            if output == 0:
+            if output == 0:		# Could be re-written as single if/else -LMB
                 m.backUpRight()
 
             if output == 1:

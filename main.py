@@ -15,6 +15,8 @@ import actions as a
 # Motors.py (just holds your Motor commands. drive(), driveTimed(), driveUntilBlackLine(), stuff like that.)
 # main.py (where everything starts!)
 
+# Just the one comment, really. You should take a stab at the camera project. I think you'll do well at the software component -LMB
+
 def main():
 
     print "Let's Get Going"
