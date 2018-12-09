@@ -9,3 +9,7 @@ armUp = 250
 armUpWithCan = 600
 topHat = 1
 et = 0
+can = 0
+red = 1
+yellow = 2
+green = 3

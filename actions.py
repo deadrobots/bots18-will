@@ -71,11 +71,34 @@ def randomBumpNavigate():
         else:
             output = random.randint(0,1)
 
-            if output == 0:		# Could be re-written as single if/else -LMB
+            if output == 0:
                 m.backUpRight()
-
-            if output == 1:
+            else:
                 m.backUpLeft()
+
+def canSeeker():
+    camera_open_black()
+    msleep(5000)
+    while True:
+        camera_update()
+        objectCount = get_object_count(c.can)
+        if objectCount > 1:
+            m.freezeBoth() #input code that would travel to and grab can
+            clawDropPreperation()
+            m.drive(95, 100, 1000)
+            s.canGrab()
+        else:
+            motor(c.rMotor, 100)
+
+
+def testConfidence():
+    while not left_button():
+        camera_update()
+        objectCount = get_object_count(c.can)
+        if objectCount > 0:
+            objectConfidence = get_object_confidence(c.can, 0)
+            print objectConfidence
+        msleep(50)
 
 
 def fullSequence():

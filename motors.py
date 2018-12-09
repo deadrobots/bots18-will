@@ -11,8 +11,7 @@ def drive(lPer, rPer, dTime):
 
 def freezeBoth(): # Careful when using this function in a loop, as we saw. That last msleep() causes some confusion. -LMB
     freeze(c.lMotor)
-    msleep(55)
-    # msleep is to balance difference between stop times of Motors
+    msleep(55) # msleep is to balance difference between stop times of Motors
     freeze(c.rMotor)
     
 def backUpRight():
